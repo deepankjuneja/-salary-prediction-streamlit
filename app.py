@@ -3,8 +3,15 @@ import pandas as pd
 import pickle
 import pandas as pd
 df = pd.read_csv("eda_data.csv")
-with open("model_file.p", "rb") as file:
-    data = pickle.load(file)
+import traceback
+
+try:
+    with open("model_file.p", "rb") as file:
+        data = pickle.load(file)
+except Exception as e:
+    st.error(f"{type(e).__name__}: {e}")
+    st.code(traceback.format_exc())
+    st.stop()
     
     
 print(data.keys())
