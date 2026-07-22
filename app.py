@@ -1,17 +1,10 @@
 import streamlit as st
 import pandas as pd
 import pickle
-import pandas as pd
 df = pd.read_csv("eda_data.csv")
-import traceback
 
-try:
-    with open("model_file.p", "rb") as file:
-        data = pickle.load(file)
-except Exception as e:
-    st.error(f"{type(e).__name__}: {e}")
-    st.code(traceback.format_exc())
-    st.stop()
+with open("model_file.p", "rb") as file:
+    data = pickle.load(file)
     
     
 print(data.keys())
